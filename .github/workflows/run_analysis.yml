@@ -28,12 +28,10 @@ jobs:
       - name: Run analysis
         run: python3 ./.github/workflows/analysis.py > analysis.txt
 
-      - name: add
-        run: git add .
-      - name: commit
-        run: git commit -m "Auto update analysis"
-      - name: fetch
-        run: git fetch origin main
-      - name: push
-        run: git push origin HEAD:main
+      - name: Commit report
+        run: |
+          git config --global user.name 'Kristoffer Højelse'
+          git config --global user.email 'hojelse@users.noreply.github.com'
+          git commit -am "Automated report"
+          git push
       
