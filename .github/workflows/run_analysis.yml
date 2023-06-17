@@ -6,9 +6,10 @@ name: test
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    on:
+    push:
+      paths:
+        - data.txt
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,10 +33,9 @@ jobs:
         run: |
           git config --global user.email "no-reply@github.com"
           git config --global user.name "GitHub Actions"
-          git add .
+          git add analysis.txt
           git commit -m "Update analysis.txt"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
