@@ -28,8 +28,6 @@ jobs:
       - name: Run analysis
         run: python3 ./.github/workflows/analysis.py > analysis.txt
 
-      - name: switch from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
       - name: add
         run: git add .
       - name: commit
